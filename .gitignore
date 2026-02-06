@@ -1,0 +1,27 @@
+# Build directory
+build/
+
+# Cache directories
+.cache/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled files
+*.o
+*.a
+*.so
+*.dylib
+
+# Executables (without extension)
+gem_calc
+test_charmonium
+debug_*
+
+# OS files
+.DS_Store
+Thumbs.db
