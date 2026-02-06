@@ -148,6 +148,48 @@ void calculateBaryons() {
     } else {
         std::cout << "  [FAILED]";
     }
+    std::cout << "\n";
+
+    // Omega: sss, S=3/2
+    Baryon omega = BaryonFactory::omega();
+    Real omega_mass = omega.calculateMass() * constants::GEV_TO_MEV;
+    std::cout << std::setw(12) << "Omega (Ω⁻)" << ": "
+              << std::fixed << std::setprecision(1)
+              << std::setw(8) << omega_mass << " MeV "
+              << "(exp: 1672 MeV)";
+    if (omega.isValid()) {
+        std::cout << "  [OK]";
+    } else {
+        std::cout << "  [FAILED]";
+    }
+    std::cout << "\n";
+
+    // Omega_ccc: ccc, S=3/2
+    Baryon omega_ccc = BaryonFactory::omega_ccc();
+    Real omega_ccc_mass = omega_ccc.calculateMass() * constants::GEV_TO_MEV;
+    std::cout << std::setw(12) << "Omega_ccc" << ": "
+              << std::fixed << std::setprecision(1)
+              << std::setw(8) << omega_ccc_mass << " MeV "
+              << "(pred: ~4800 MeV)";
+    if (omega_ccc.isValid()) {
+        std::cout << "  [OK]";
+    } else {
+        std::cout << "  [FAILED]";
+    }
+    std::cout << "\n";
+
+    // Omega_bbb: bbb, S=3/2
+    Baryon omega_bbb = BaryonFactory::omega_bbb();
+    Real omega_bbb_mass = omega_bbb.calculateMass() * constants::GEV_TO_MEV;
+    std::cout << std::setw(12) << "Omega_bbb" << ": "
+              << std::fixed << std::setprecision(1)
+              << std::setw(8) << omega_bbb_mass << " MeV "
+              << "(pred: ~14400 MeV)";
+    if (omega_bbb.isValid()) {
+        std::cout << "  [OK]";
+    } else {
+        std::cout << "  [FAILED]";
+    }
     std::cout << "\n\n";
 }
 

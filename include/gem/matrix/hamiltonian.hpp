@@ -114,8 +114,11 @@ public:
     /**
      * @brief Build Hamiltonian with specified total spin
      * @param twice_S Total spin times 2 (1 for S=1/2, 3 for S=3/2)
+     * @param pair12_identical True if quarks 1 and 2 are identical flavors (Σ-type)
+     *                         False for different flavors (Λ-type)
+     *                         Only affects S=1/2 baryons
      */
-    void build(int twice_S);
+    void build(int twice_S, bool pair12_identical = false);
 
 private:
     const GaussianBasis& basis_rho_;
@@ -125,7 +128,7 @@ private:
     PotentialParameters params_;
 
     void buildKineticMatrix();
-    void buildPotentialMatrix(int twice_S);
+    void buildPotentialMatrix(int twice_S, bool pair12_identical);
 };
 
 /**

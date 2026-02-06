@@ -10,6 +10,7 @@ Baryon::Baryon(QuarkFlavor flavor1, QuarkFlavor flavor2, QuarkFlavor flavor3,
       m2_(constants::getQuarkMass(flavor2)),
       m3_(constants::getQuarkMass(flavor3)),
       twice_total_spin_(twice_total_spin),
+      pair12_identical_(flavor1 == flavor2),  // Σ-type if same flavor
       jacobi_(m1_, m2_, m3_),
       binding_energy_(0.0),
       valid_(false) {
@@ -22,6 +23,7 @@ Baryon::Baryon(QuarkFlavor flavor1, QuarkFlavor flavor2, QuarkFlavor flavor3,
 Baryon::Baryon(Real m1, Real m2, Real m3, int twice_total_spin)
     : m1_(m1), m2_(m2), m3_(m3),
       twice_total_spin_(twice_total_spin),
+      pair12_identical_(std::abs(m1 - m2) < 1e-6),  // Assume identical if same mass
       jacobi_(m1, m2, m3),
       binding_energy_(0.0),
       valid_(false) {
@@ -79,7 +81,7 @@ Real Baryon::calculateMass() {
     ThreeBodyHamiltonian hamiltonian(*basis_rho_, *basis_lambda_,
                                      jacobi_.mu_rho(), jacobi_.mu_lambda(),
                                      masses, pot_params_);
-    hamiltonian.build(twice_total_spin_);
+    hamiltonian.build(twice_total_spin_, pair12_identical_);
 
     // Solve eigenvalue problem
     EigenvalueSolver solver(EigenvalueSolver::Method::CholeskyReduce);

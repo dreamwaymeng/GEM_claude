@@ -110,6 +110,7 @@ public:
 private:
     Real m1_, m2_, m3_;              // Quark masses
     int twice_total_spin_;           // 1 for S=1/2, 3 for S=3/2
+    bool pair12_identical_;          // True if quarks 1,2 are same flavor (Σ-type)
 
     BasisParameters basis_params_rho_;
     BasisParameters basis_params_lambda_;
@@ -137,7 +138,8 @@ public:
         return Baryon(QuarkFlavor::Up, QuarkFlavor::Up, QuarkFlavor::Down, 1);
     }
     static Baryon neutron() {
-        return Baryon(QuarkFlavor::Up, QuarkFlavor::Down, QuarkFlavor::Down, 1);
+        // Put identical quarks (dd) in positions 1,2 for correct Σ-type spin structure
+        return Baryon(QuarkFlavor::Down, QuarkFlavor::Down, QuarkFlavor::Up, 1);
     }
     static Baryon lambda() {
         return Baryon(QuarkFlavor::Up, QuarkFlavor::Down, QuarkFlavor::Strange, 1);
@@ -146,7 +148,8 @@ public:
         return Baryon(QuarkFlavor::Up, QuarkFlavor::Up, QuarkFlavor::Strange, 1);
     }
     static Baryon xi() {
-        return Baryon(QuarkFlavor::Up, QuarkFlavor::Strange, QuarkFlavor::Strange, 1);
+        // Put identical quarks (ss) in positions 1,2 for correct Σ-type spin structure
+        return Baryon(QuarkFlavor::Strange, QuarkFlavor::Strange, QuarkFlavor::Up, 1);
     }
 
     // Decuplet baryons (S = 3/2)
@@ -172,6 +175,14 @@ public:
     }
     static Baryon omega_c() {
         return Baryon(QuarkFlavor::Strange, QuarkFlavor::Strange, QuarkFlavor::Charm, 1);
+    }
+
+    // Triple heavy baryons (S = 3/2)
+    static Baryon omega_ccc() {
+        return Baryon(QuarkFlavor::Charm, QuarkFlavor::Charm, QuarkFlavor::Charm, 3);
+    }
+    static Baryon omega_bbb() {
+        return Baryon(QuarkFlavor::Bottom, QuarkFlavor::Bottom, QuarkFlavor::Bottom, 3);
     }
 };
 

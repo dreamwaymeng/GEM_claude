@@ -79,3 +79,6 @@ install(TARGETS gem_quark gem_calc
     RUNTIME DESTINATION bin
 )
 install(DIRECTORY include/ DESTINATION include)
+
+add_executable(test_charmed apps/test_charmed.cpp)
+target_link_libraries(test_charmed PRIVATE gem_quark)
